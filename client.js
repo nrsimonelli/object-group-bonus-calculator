@@ -31,13 +31,76 @@ const employees = [
   }
 ];
 
-// YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
-// Take small steps! Don't write a for loop and two functions that do all of the calculations right away.
-// This problem is massive! Break the problem down. Use the debugger.
-// What is the fewest lines of code I can write and test to get just a little closer?
+// processing employee bonuses
+  for (let index = 0; index < employees.length; index++) {
+  const element = employees[index];
+}
 
-// This is not a race. Everyone on your team should understand what is happening.
-// Ask questions when you don't.
+// function logic
+const employeeBonus = [];
 
-console.log( employees );
+function calculateBonus (employees){
+  const newObject = {
+    name: employees.name,
+    totalBonus: totalBonuses(employees),
+    bonusPercentage: bonusPercentage(employees),
+    totalCompensation: totalCompensation(employees)
+    
+  }
+  employeeBonus.push(newObject);
+  return true;
+}
+console.log(calculateBonus(employees[0]));
+console.log(employeeBonus);
+
+
+function totalBonuses(employees){
+if (employees.reviewRating <= 2) {
+  return employees.annualSalary * 0;
+  } else {
+    if (employees.reviewRating === 3) {
+      return employees.annualSalary * 0.04;
+    } else {
+      if (employees.reviewRating === 4) {
+        return employees.annualSalary * 0.06;
+      } else{
+        return employees.annualSalary * 0.10;
+      }
+  } 
+  }
+}
+
+
+function bonusPercentage(employees){
+  if (employees.reviewRating <= 2) {
+    return 0;
+    } else {
+      if (employees.reviewRating === 3) {
+        return 0.04;
+      } else {
+        if (employees.reviewRating === 4) {
+          return 0.06;
+        } else{
+          return 0.10;
+        }
+    } 
+    }
+  }
+
+function totalCompensation(employees){
+  if (employees.reviewRating <= 2) {
+    return Number(employees.annualSalary * 0) + Number(employees.annualSalary);
+    } else {
+      if (employees.reviewRating === 3) {
+        return Number(employees.annualSalary) + Number(employees.annualSalary) * 0.04;
+      } else {
+        if (employees.reviewRating === 4) {
+          return Number(employees.annualSalary) + Number(employees.annualSalary) * 0.06;
+        } else{
+          return Number(employees.annualSalary) + Number(employees.annualSalary * 0.10);
+        }
+    } 
+    }
+  }
+

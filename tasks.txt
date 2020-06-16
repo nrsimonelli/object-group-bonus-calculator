@@ -1,0 +1,7 @@
+//1.) loop over employees, console log each iteration
+
+2.) write a fuction that takes in employee object and adds new properties
+
+3.) bonus calc
+
+// stretch goals
