@@ -31,14 +31,19 @@ const employees = [
   }
 ];
 
+const employeeBonus = [];
+
 
 // processing employee bonuses
+
+function runIt() {
   for (let index = 0; index < employees.length; index++) {
   const element = employees[index];
+  calculateBonus(element);
+}
+return true;
 }
 
-// function logic
-const employeeBonus = [];
 
 function calculateBonus (employees){
   const newObject = {
@@ -51,33 +56,8 @@ function calculateBonus (employees){
   employeeBonus.push(newObject);
   return true;
 }
-console.log(calculateBonus(employees[0]));
-console.log(employeeBonus);
 
-
-function totalBonuses(employees){
-  return employees.annualSalary * bonusPercentage(employees);
-}
-
-function senorityModifier(employees){
-
-  const string = employees.employeeNumber
-
-  if (string.length === 4){
-    return 0.05;
-  } else {
-    return 0.00;
-  }
-}
-
-function richModifier(employees){
-  if (employees.annualSalary > 65000) {
-    return -0.01;
-  } else {
-    return 0.00;
-  }
-}
-
+// final bonus percentage 
 function bonusPercentage(employees){
   
   const final = rawPercentage(employees) + richModifier(employees) + senorityModifier(employees);
@@ -92,7 +72,26 @@ function bonusPercentage(employees){
   }
 }
 }
+// bonus modifiers
+function senorityModifier(employees){
 
+  const string = employees.employeeNumber
+
+  if (string.length === 4){
+    return 0.05;
+  } else {
+    return 0.00;
+  }
+}
+// bonus modifiers
+function richModifier(employees){
+  if (employees.annualSalary > 65000) {
+    return -0.01;
+  } else {
+    return 0.00;
+  }
+}
+// initial bonus percentage
 function rawPercentage(employees){
  
 
@@ -111,10 +110,15 @@ function rawPercentage(employees){
   }
   
 }
-
+// final percent times salary
+function totalBonuses(employees){
+  return employees.annualSalary * bonusPercentage(employees);
+}
+// salary plus total bonus
 function totalCompensation(employees){
   return Number(employees.annualSalary) + Number(totalBonuses(employees));
 }
- 
 
-  
+
+runIt();
+console.log(employeeBonus);
