@@ -56,23 +56,46 @@ console.log(employeeBonus);
 
 
 function totalBonuses(employees){
-if (employees.reviewRating <= 2) {
-  return employees.annualSalary * 0;
+  return employees.annualSalary * bonusPercentage(employees);
+}
+
+function senorityModifier(employees){
+
+  const string = employees.employeeNumber
+
+  if (string.length === 4){
+    return 0.05;
   } else {
-    if (employees.reviewRating === 3) {
-      return employees.annualSalary * 0.04;
-    } else {
-      if (employees.reviewRating === 4) {
-        return employees.annualSalary * 0.06;
-      } else{
-        return employees.annualSalary * 0.10;
-      }
-  } 
+    return 0.00;
   }
 }
 
+function richModifier(employees){
+  if (employees.annualSalary > 65000) {
+    return -0.01;
+  } else {
+    return 0.00;
+  }
+}
 
 function bonusPercentage(employees){
+  
+  const final = rawPercentage(employees) + richModifier(employees) + senorityModifier(employees);
+  
+  if (final > 0.13) {
+    return 0.13
+  } else {
+    if (final <= 0.00) {
+      return 0.00
+    } else {
+    return final
+  }
+}
+}
+
+function rawPercentage(employees){
+ 
+
   if (employees.reviewRating <= 2) {
     return 0;
     } else {
@@ -85,22 +108,13 @@ function bonusPercentage(employees){
           return 0.10;
         }
     } 
-    }
   }
+  
+}
 
 function totalCompensation(employees){
-  if (employees.reviewRating <= 2) {
-    return Number(employees.annualSalary * 0) + Number(employees.annualSalary);
-    } else {
-      if (employees.reviewRating === 3) {
-        return Number(employees.annualSalary) + Number(employees.annualSalary) * 0.04;
-      } else {
-        if (employees.reviewRating === 4) {
-          return Number(employees.annualSalary) + Number(employees.annualSalary) * 0.06;
-        } else{
-          return Number(employees.annualSalary) + Number(employees.annualSalary * 0.10);
-        }
-    } 
-    }
-  }
+  return Number(employees.annualSalary) + Number(totalBonuses(employees));
+}
+ 
 
+  
